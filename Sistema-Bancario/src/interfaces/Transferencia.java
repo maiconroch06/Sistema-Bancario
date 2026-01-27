@@ -1,6 +1,7 @@
 package interfaces;
 
 import Service.OperacoesBancarias;
+import classes.ContaBancaria;
 import javax.swing.JOptionPane;
 
 public class Transferencia extends javax.swing.JDialog {
@@ -120,19 +121,41 @@ public class Transferencia extends javax.swing.JDialog {
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmarActionPerformed
-        String origem = jTextField1.getText();
-        String destino = jTextField2.getText();
-        String valorStr = jTextField3.getText();
-        
-        if(origem.trim().isEmpty() || destino.trim().isEmpty() || valorStr.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha os campos!");
-        }
-        
-        double valor = Double.parseDouble(valorStr);
-        operacao.transferenciaBancaria(operacao.buscar(origem), operacao.buscar(destino), valor);
+        String origem = jTextField1.getText().trim();
+        String destino = jTextField2.getText().trim();
+        String valorStr = jTextField3.getText().trim();
 
+        if (origem.isEmpty() || destino.isEmpty() || valorStr.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+            return;
+        }
+
+        double valor;
+        try {
+            valor = Double.parseDouble(valorStr.replace(",", "."));
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Valor inválido!");
+            return;
+        }
+
+        ContaBancaria contaOrigem = operacao.buscar(origem);
+        ContaBancaria contaDestino = operacao.buscar(destino);
+
+        if (contaOrigem == null || contaDestino == null) {
+            JOptionPane.showMessageDialog(null, "Conta de origem ou destino não encontrada!");
+            return;
+        }
+
+        boolean sucesso = operacao.transferenciaBancaria(contaOrigem, contaDestino, valor);
+
+        if (!sucesso) {
+            JOptionPane.showMessageDialog(null, "Transferência não realizada. Verifique saldo e valor.");
+            return;
+        }
+
+        JOptionPane.showMessageDialog(null, "Transferência realizada com sucesso!");
         this.dispose();
-        
+
     }//GEN-LAST:event_botaoConfirmarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

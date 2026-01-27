@@ -2,8 +2,6 @@ package classes;
 
 public class ContaPoupanca extends ContaBancaria {
     
-    private double poupanca = 0;
-    
     @Override
     public void debitar(double valor){
         if(valor <= getSaldo()) {
@@ -23,28 +21,20 @@ public class ContaPoupanca extends ContaBancaria {
         return getSaldo();
     }
     
-    public void debitarPoupanca(double valor){
-        if(valor <= getSaldoPoupanca()) {
+    @Override
+    public void debitarInfor(double valor){
+        if(valor <= getInformacao()) {
             creditar(valor);
-            setSaldoPoupanca(getSaldoPoupanca()- valor);
+            setInformacao(getInformacao() - valor);
         }
     }
     
-    public void creditarPoupanca(double valor){
+    @Override
+    public void creditarInfor(double valor){
         if(valor > 0) {
             debitar(valor);
-            setSaldoPoupanca(getSaldoPoupanca() + valor);
+            setInformacao(getInformacao()+ valor);
         }
     }
-
-    public double getSaldoPoupanca() {
-        return poupanca;
-    }
-
-    public void setSaldoPoupanca(double poupanca) {
-        this.poupanca = poupanca;
-    }
-    
-    
     
 }

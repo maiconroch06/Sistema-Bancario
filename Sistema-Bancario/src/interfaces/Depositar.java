@@ -2,6 +2,7 @@ package interfaces;
 
 import Service.OperacoesBancarias;
 import classes.ContaBancaria;
+import classes.ContaCorrente;
 import classes.ContaPoupanca;
 import javax.swing.JOptionPane;
 
@@ -47,7 +48,7 @@ public class Depositar extends javax.swing.JDialog {
         jLabel4.setText("Tipo da conta:");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel5.setText("- - - - - - - ");
+        jLabel5.setText("- - - - - - - - - - - - - - - - - - - - - -");
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Poupança");
@@ -103,18 +104,17 @@ public class Depositar extends javax.swing.JDialog {
                                 .addContainerGap()
                                 .addComponent(jLabel4)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField1)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(botaoConfirmar)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(botaoCancelar))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(45, 45, 45)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField1)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(botaoConfirmar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(botaoCancelar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addComponent(jLabel7)
@@ -122,7 +122,7 @@ public class Depositar extends javax.swing.JDialog {
                         .addComponent(jRadioButton1)
                         .addGap(10, 10, 10)
                         .addComponent(jRadioButton2)))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,8 +161,8 @@ public class Depositar extends javax.swing.JDialog {
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmarActionPerformed
-        String numero = jTextField1.getText();
-        String valorStr = jTextField2.getText();
+        String numero = jTextField1.getText().trim();
+        String valorStr = jTextField2.getText().trim();
         
         ContaBancaria conta = operacao.buscar(numero);
         
@@ -170,34 +170,72 @@ public class Depositar extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Preencha os campos!");
             return;
         }
+        
+        if(conta == null) {
+            JOptionPane.showMessageDialog(this, "Conta não encontrada!");
+            return;
+        }
 
-        if(jRadioButton1.isSelected() && jRadioButton2.isSelected()){
-            JOptionPane.showMessageDialog(null, "Selecione o local de onde será o saque!");
+        if(!jRadioButton1.isSelected() && !jRadioButton2.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Selecione o local!");
             return;
         }
         
-        double valor = (Double)Double.parseDouble(valorStr);
+        double valor;
 
-        if(conta instanceof ContaPoupanca && jRadioButton2.isSelected()) {
-            operacao.creditarEmPoupanca((ContaPoupanca)conta, valor);
-        } else {
-            conta.creditar(valor);
+        try {
+            valor = Double.parseDouble(valorStr.replace(",", "."));
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Valor inválido!");
+            return;
         }
+        
+        boolean sucesso;
+        
+        if(conta instanceof ContaPoupanca && jRadioButton2.isSelected()) {
+            sucesso = operacao.creditarEmPoupanca(conta, valor);
+        } else {
+            sucesso = operacao.creditar(conta, valor);;
+        }
+        
+        if(!sucesso) {
+            JOptionPane.showMessageDialog(this, "Saldo insuficiente ou valor inválido!");
+            return;
+        }
+        
+        JOptionPane.showMessageDialog(null, "Deposito realizado com sucesso!");
         this.dispose();
     }//GEN-LAST:event_botaoConfirmarActionPerformed
 
     private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
         String numero = jTextField1.getText();
+
+        if(numero == null || numero.trim().isEmpty()) {
+            resetarTela();
+            return;
+        }
+
         ContaBancaria conta = operacao.buscar(numero);
+
+        if(conta == null) {
+            resetarTela();
+            return;
+        }
         
-        if(conta instanceof ContaPoupanca) {
+        if(conta instanceof ContaCorrente) {
             jRadioButton1.setEnabled(true);
-            jRadioButton2.setEnabled(true);
-            jLabel5.setText(conta.getTipoConta());
-        } else {
-            jRadioButton1.setEnabled(false);
+            jRadioButton1.setSelected(true);
             jRadioButton2.setEnabled(false);
+            jRadioButton2.setSelected(false);
             jLabel5.setText(conta.getTipoConta());
+            
+        } else {
+            jRadioButton1.setEnabled(true);
+            jRadioButton1.setSelected(false);
+            jRadioButton2.setEnabled(true);
+            jRadioButton2.setSelected(false);
+            jLabel5.setText(conta.getTipoConta() + "  |  R$" + conta.getInformacao());
+            
         }
     }//GEN-LAST:event_jTextField1FocusLost
 
@@ -216,4 +254,13 @@ public class Depositar extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+
+    private void resetarTela() {
+        jRadioButton1.setEnabled(false);
+        jRadioButton1.setSelected(false);
+        jRadioButton2.setEnabled(false);
+        jRadioButton2.setSelected(false);
+        jLabel5.setText("- - - - - - - - - - - - - - - - - - - - - - -");
+    }
+
 }

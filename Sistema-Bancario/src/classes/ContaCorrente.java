@@ -7,7 +7,7 @@ public class ContaCorrente extends ContaBancaria {
     @Override
     public void debitar(double valor){
         if(valor <= LIMITE + getSaldo()) {
-            debitar(getSaldo() - valor);
+            setSaldo(getSaldo() - valor);
         }
     }
     
@@ -22,5 +22,11 @@ public class ContaCorrente extends ContaBancaria {
     public double mostrarSaldo(){
         return getSaldo() + LIMITE;
     }
+
+    @Override
+    public void debitarInfor(double valor){}
+
+    @Override
+    public void creditarInfor(double valor){}
     
 }

@@ -5,7 +5,7 @@ public abstract class ContaBancaria {
     private String nome;
     private double saldo = 0;
     private String tipoConta;
-    private String senha;
+    private double acrescimoInformacao = 0;
     
     public abstract void creditar(double valor);
     
@@ -13,6 +13,10 @@ public abstract class ContaBancaria {
     
     public abstract double mostrarSaldo();
     
+    public abstract void debitarInfor(double valor);
+    
+    public abstract void creditarInfor(double valor);
+
     // Metodos Acessores
     public String getNome() {
         return nome;
@@ -22,12 +26,12 @@ public abstract class ContaBancaria {
         this.nome = nome;
     }
 
-    public String getSenha() {
-        return senha;
+    public double getInformacao() {
+        return acrescimoInformacao;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setInformacao(double acrescimoInformacao) {
+        this.acrescimoInformacao = acrescimoInformacao;
     }
 
     public String getNumero() {

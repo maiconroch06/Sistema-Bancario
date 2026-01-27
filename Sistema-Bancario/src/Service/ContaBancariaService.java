@@ -1,8 +1,6 @@
 package Service;
 
 import classes.ContaBancaria;
-import classes.ContaCorrente;
-import classes.ContaPoupanca;
 import java.util.HashMap;
 
 public class ContaBancariaService {
@@ -11,17 +9,22 @@ public class ContaBancariaService {
     
     private int sequenciaCorrente = 0;
     private int sequenciaPoupanca = 0;
-
-    public void cadastrar(ContaCorrente corrente, ContaPoupanca poupanca) {
-        contas.put(corrente.getNumero(), corrente);
-        contas.put(poupanca.getNumero(), poupanca);
-    }
     
+    public void cadastrar(ContaBancaria conta) {
+        contas.put(conta.getNumero(), conta);
+    }
+
     public boolean remover(String numero) {
+        if (numero == null) {
+            return false;
+        }
         return contas.remove(numero) != null;
     }
     
     public ContaBancaria buscar(String numero) {
+        if (numero == null) {
+            return null;
+        }
         return contas.get(numero);
     }
     
@@ -38,16 +41,5 @@ public class ContaBancariaService {
         sequenciaPoupanca++;
         return String.format("02%02d", sequenciaPoupanca);
     }
-    
-}
 
-// #######_Caso_Precise_#######
-    
-//    public void cadastrar(ContaCorrente corrente) {
-//        contas.put(gerarNumeroCorrente(), corrente);
-//    }
-//    
-//    public void cadastrar(ContaPoupanca poupanca) {
-//        contas.put(gerarNumeroPoupanca(), poupanca);
-//    }
-    
+}

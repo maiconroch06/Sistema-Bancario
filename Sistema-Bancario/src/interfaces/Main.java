@@ -3,7 +3,6 @@ package interfaces;
 import Service.OperacoesBancarias;
 import classes.ContaBancaria;
 import classes.ContaCorrente;
-import classes.ContaPoupanca;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -80,7 +79,7 @@ public class Main extends javax.swing.JFrame {
         jTextField4.setEditable(false);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel8.setText("####");
+        jLabel8.setText("######");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -260,12 +259,19 @@ public class Main extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Número", "Titular", "Saldo", "Tipo", "Senha"
+                "Número", "Titular", "Saldo", "Tipo", "Limite/Poupança"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Double.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -323,6 +329,7 @@ public class Main extends javax.swing.JFrame {
         Sacar telaSacar = new Sacar(this, true, operacao);
         telaSacar.setVisible(true);
         
+        limparCampos();
         carregarTabela(tabelaContasBancarias, operacao.listar());
     }//GEN-LAST:event_botaoSacarActionPerformed
 
@@ -330,6 +337,7 @@ public class Main extends javax.swing.JFrame {
         Depositar telaDepositar = new Depositar(this, true, operacao);
         telaDepositar.setVisible(true);
         
+        limparCampos();
         carregarTabela(tabelaContasBancarias, operacao.listar());
     }//GEN-LAST:event_botaoDepositarActionPerformed
 
@@ -337,6 +345,7 @@ public class Main extends javax.swing.JFrame {
         Transferencia telaTransferir = new Transferencia(this, true, operacao);
         telaTransferir.setVisible(true);
         
+        limparCampos();
         carregarTabela(tabelaContasBancarias, operacao.listar());
     }//GEN-LAST:event_botaoTransferirActionPerformed
 
@@ -351,27 +360,36 @@ public class Main extends javax.swing.JFrame {
         );
         
         if(operacao.remover(numero)) {
+            limparCampos();
             JOptionPane.showMessageDialog(null, "Conta deletada com sucesso!");
         }
     }//GEN-LAST:event_botaoRemoverActionPerformed
 
     private void botaoConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmarActionPerformed
-        String numero = jTextField1.getText();
-        
+        String numero = jTextField1.getText().trim();
+
+        if(numero.isEmpty()) {
+            limparCampos();
+            return;
+        }
+
         ContaBancaria conta = operacao.buscar(numero);
+
+        if(conta == null) {
+            JOptionPane.showMessageDialog(this, "Conta não encontrada!");
+            return;
+        }
+
         jTextField2.setText(conta.getNome());
         jTextField5.setText(conta.getTipoConta());
-        jTextField3.setText(" R$ " + String.valueOf(conta.mostrarSaldo()));
+        jTextField3.setText(" R$ " + conta.mostrarSaldo());
         jLabel8.setText(conta.getNumero());
-        
+
         if(conta instanceof ContaCorrente) {
-            jTextField4.setText("   - - - - - - -");
-        
+            jTextField4.setText("   - - - - - - - - - - - - -");
         } else {
-            ContaPoupanca contaP = (ContaPoupanca)conta;
-            jTextField4.setText(" R$ " + String.valueOf(contaP.getSaldoPoupanca()));
+            jTextField4.setText(" R$ " + conta.getInformacao());
         }
-        
     }//GEN-LAST:event_botaoConfirmarActionPerformed
 
     public static void main(String args[]) {
@@ -413,15 +431,24 @@ public class Main extends javax.swing.JFrame {
         DefaultTableModel modeloTabela = (DefaultTableModel) tabelaContasBancarias.getModel();
         
         modeloTabela.setNumRows(0);
-        for (ContaBancaria campo : contas.values()) {
+        for(ContaBancaria campo : contas.values()) {
             modeloTabela.addRow(new Object[]{
                 campo.getNumero(),
                 campo.getNome(),
                 campo.getSaldo(),
                 campo.getTipoConta(),
-                campo.getSenha()
+                campo.getInformacao()
             });
         }
+    }
+    
+    private void limparCampos() {
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        jLabel8.setText("######");
     }
 
 }
