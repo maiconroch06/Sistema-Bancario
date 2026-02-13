@@ -3,6 +3,12 @@ package classes;
 public class ContaCorrente extends ContaBancaria {
     
     private final double LIMITE = 100.00;
+
+    public ContaCorrente(String numero, String nome, double saldo, String tipoConta, double acrescimoInformacao) {
+        super(numero, nome, saldo, tipoConta, acrescimoInformacao);
+    }
+    
+    public ContaCorrente() {}
     
     @Override
     public void debitar(double valor){

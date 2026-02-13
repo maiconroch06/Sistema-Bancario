@@ -1,6 +1,12 @@
 package classes;
 
 public class ContaPoupanca extends ContaBancaria {
+
+    public ContaPoupanca(String numero, String nome, double saldo, String tipoConta, double acrescimoInformacao) {
+        super(numero, nome, saldo, tipoConta, acrescimoInformacao);
+    }
+
+    public ContaPoupanca() {}
     
     @Override
     public void debitar(double valor){
