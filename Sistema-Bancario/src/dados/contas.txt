@@ -1,0 +1,101 @@
+numero,titutar,saldo,tipo,caracteristica
+0101,Maicon,1320.50,Corrente,400.00
+0102,Danilo,845.20,Corrente,300.00
+0103,Laelson,2150.00,Corrente,800.00
+0104,Jakson,390.75,Corrente,200.00
+0105,Ryan,5100.40,Corrente,1200.00
+0106,Emanuel,260.10,Corrente,150.00
+0107,Thiago,980.90,Corrente,350.00
+0108,Gabriel,7200.00,Corrente,2000.00
+0109,Matheus,640.00,Corrente,250.00
+0110,Daniel,120.50,Corrente,100.00
+0111,Fernanda,890.30,Corrente,300.00
+0112,Arthur,2750.60,Corrente,900.00
+0113,José,430.20,Corrente,200.00
+0114,João,1680.00,Corrente,600.00
+0115,Marcio,210.00,Corrente,120.00
+0116,Lucas,3400.90,Corrente,1000.00
+0117,Bruno,780.00,Corrente,300.00
+0118,Camila,560.40,Corrente,200.00
+0119,Rafaela,1250.00,Corrente,500.00
+0120,Pedro,980.00,Corrente,350.00
+0121,Sofia,310.00,Corrente,150.00
+0122,Gustavo,4500.00,Corrente,1500.00
+0123,Larissa,670.80,Corrente,250.00
+0124,Victor,820.00,Corrente,300.00
+0125,Juliana,1400.00,Corrente,500.00
+0126,Renato,520.00,Corrente,200.00
+0127,Rennan,930.00,Corrente,350.00
+0128,Igor,6100.00,Corrente,2000.00
+0129,Beatriz,720.00,Corrente,250.00
+0130,Felipe,280.00,Corrente,120.00
+0131,Mariana,1980.00,Corrente,700.00
+0132,Henrique,140.00,Corrente,100.00
+0133,Patricia,1500.00,Corrente,600.00
+0134,Carlos,2200.00,Corrente,800.00
+0135,Paulo,330.00,Corrente,150.00
+0136,Leticia,760.00,Corrente,250.00
+0137,Vanessa,1020.00,Corrente,400.00
+0138,Marcelo,1850.00,Corrente,650.00
+0139,Daniela,430.00,Corrente,150.00
+0140,Ricardo,3900.00,Corrente,1200.00
+0141,Aline,880.00,Corrente,300.00
+0142,Otavio,640.00,Corrente,250.00
+0143,Bianca,1550.00,Corrente,600.00
+0144,Leonardo,780.00,Corrente,300.00
+0145,Natalia,990.00,Corrente,350.00
+0146,Samuel,470.00,Corrente,200.00
+0147,Clara,820.00,Corrente,300.00
+0148,André,1330.00,Corrente,500.00
+0149,Helena,910.00,Corrente,300.00
+0150,Victor Hugo,2600.00,Corrente,900.00
+0201,Rafael,2400.00,Poupança,1.6
+0202,Brenda,520.00,Poupança,1.1
+0203,Leandro,3700.00,Poupança,2.1
+0204,Tatiane,180.00,Poupança,0.9
+0205,Fabricio,8200.00,Poupança,2.8
+0206,Priscila,340.00,Poupança,1.0
+0207,Caio,990.00,Poupança,1.3
+0208,Melissa,14000.00,Poupança,3.2
+0209,Rodrigo,680.00,Poupança,1.2
+0210,Julio,120.00,Poupança,0.8
+0211,Karina,1500.00,Poupança,1.7
+0212,Vinicius,2200.00,Poupança,1.9
+0213,Brayan,960.00,Poupança,1.3
+0214,Ana Paula,4800.00,Poupança,2.3
+0215,Roberta,240.00,Poupança,1.0
+0216,Luan,75.00,Poupança,0.8
+0217,Cesar,560.00,Poupança,1.1
+0218,Flavia,95.00,Poupança,0.9
+0219,Adriana,7200.00,Poupança,2.6
+0220,Victor Gabriel,3500.00,Poupança,2.0
+0221,Ruan,890.00,Poupança,1.3
+0222,Isabela,1300.00,Poupança,1.6
+0223,Alex,430.00,Poupança,1.1
+0224,Thierry,5200.00,Poupança,2.4
+0225,Livia,140.00,Poupança,0.9
+0226,Antônio Henrique,2600.00,Poupança,1.9
+0227,Ester,780.00,Poupança,1.2
+0228,Yuri,1020.00,Poupança,1.4
+0229,Sabrina,1800.00,Poupança,1.8
+0230,Guilherme,360.00,Poupança,1.0
+0231,Paula,2400.00,Poupança,1.9
+0232,Jonathan,9500.00,Poupança,2.9
+0233,Mirela,660.00,Poupança,1.2
+0234,Renan,310.00,Poupança,1.0
+0235,Carolina,5200.00,Poupança,2.4
+0236,Pedro Henrique,85.00,Poupança,0.8
+0237,Alessandra,3300.00,Poupança,2.0
+0238,Fernando,4400.00,Poupança,2.2
+0239,Silvia,270.00,Poupança,1.0
+0240,Matias,910.00,Poupança,1.3
+0241,Denise,580.00,Poupança,1.1
+0242,Lucas Gabriel,1400.00,Poupança,1.6
+0243,Andreia,2750.00,Poupança,1.9
+0244,Paulo Ricardo,460.00,Poupança,1.1
+0245,Bruno Cesar,8200.00,Poupança,2.7
+0246,Eliane,980.00,Poupança,1.3
+0247,Wesley,640.00,Poupança,1.2
+0248,Talita,1950.00,Poupança,1.7
+0249,Ricardo Junior,760.00,Poupança,1.2
+0250,Vanessa Cristina,1020.00,Poupança,1.4
