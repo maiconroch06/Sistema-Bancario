@@ -68,6 +68,12 @@ public class Utilidade {
         txt.selectAll();
     }
     
+    public static void exibirIcone(javax.swing.JFrame frame) {
+        java.awt.Image icon = new javax.swing.ImageIcon(
+                frame.getClass().getResource("/imagens/icone.png")).getImage();
+        frame.setIconImage(icon.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH));
+    }
+    
     public static void carregarTabela(javax.swing.JTable tabelaContasBancarias, java.util.HashMap<String, classes.ContaBancaria> contas) {
         javax.swing.table.DefaultTableModel modeloTabela = (javax.swing.table.DefaultTableModel) tabelaContasBancarias.getModel();
         
