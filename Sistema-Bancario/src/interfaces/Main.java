@@ -345,6 +345,14 @@ public class Main extends javax.swing.JFrame {
             }
         });
         tabelaContasBancarias.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tabelaContasBancarias);
+        if (tabelaContasBancarias.getColumnModel().getColumnCount() > 0) {
+            tabelaContasBancarias.getColumnModel().getColumn(0).setResizable(false);
+            tabelaContasBancarias.getColumnModel().getColumn(1).setResizable(false);
+            tabelaContasBancarias.getColumnModel().getColumn(2).setResizable(false);
+            tabelaContasBancarias.getColumnModel().getColumn(3).setResizable(false);
+            tabelaContasBancarias.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -361,11 +369,6 @@ public class Main extends javax.swing.JFrame {
                     .addGap(70, 70, 70)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(37, Short.MAX_VALUE)))
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(tabelaContasBancarias, javax.swing.GroupLayout.PREFERRED_SIZE, 611, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,21 +385,8 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createSequentialGroup()
                     .addGap(139, 139, 139)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(565, Short.MAX_VALUE)))
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(tabelaContasBancarias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap(140, Short.MAX_VALUE)))
         );
-
-        if (tabelaContasBancarias.getColumnModel().getColumnCount() > 0) {
-            tabelaContasBancarias.getColumnModel().getColumn(0).setResizable(false);
-            tabelaContasBancarias.getColumnModel().getColumn(1).setResizable(false);
-            tabelaContasBancarias.getColumnModel().getColumn(2).setResizable(false);
-            tabelaContasBancarias.getColumnModel().getColumn(3).setResizable(false);
-            tabelaContasBancarias.getColumnModel().getColumn(4).setResizable(false);
-        }
 
         jPanel4.add(jPanel5);
         jPanel5.setBounds(0, 0, 720, 706);
