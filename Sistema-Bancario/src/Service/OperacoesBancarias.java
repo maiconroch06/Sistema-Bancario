@@ -1,4 +1,4 @@
-package Service;
+package service;
 
 import classes.ContaBancaria;
 
@@ -9,6 +9,7 @@ public class OperacoesBancarias extends ContaBancariaService {
             return false;
         }
         conta.creditar(valor);
+        salvar();
         return true;
     }
 
@@ -17,6 +18,7 @@ public class OperacoesBancarias extends ContaBancariaService {
             return false;
         }
         conta.debitar(valor);
+        salvar();
         return true;
     }
     
@@ -30,6 +32,7 @@ public class OperacoesBancarias extends ContaBancariaService {
             return false;
         }
         conta.creditarInfor(valor);
+        salvar();
         return true;
     }
 
@@ -38,6 +41,7 @@ public class OperacoesBancarias extends ContaBancariaService {
             return false;
         }
         conta.debitarInfor(valor);
+        salvar();
         return true;
     }
     
@@ -52,6 +56,7 @@ public class OperacoesBancarias extends ContaBancariaService {
 
         origem.debitar(valor);
         destino.creditar(valor);
+        salvar();
         return true;
     }
 }
