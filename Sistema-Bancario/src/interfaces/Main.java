@@ -562,6 +562,8 @@ public class Main extends javax.swing.JFrame {
         Utilidade.atalho(botaoDepositar, "F2");
         Utilidade.atalho(botaoSacar, "F3");
         Utilidade.atalho(botaoTransferir, "F4");
+
+        Utilidade.validarInteiro(jTextField1);
     }
 
 }

@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class ContaBancariaService {
     
-    HashMap<String, ContaBancaria> contas = new HashMap<>();
+    private HashMap<String, ContaBancaria> contas = new HashMap<>();
 
     private int sequenciaCorrente = 0;
     private int sequenciaPoupanca = 0;

@@ -19,6 +19,9 @@ public class Depositar extends javax.swing.JDialog {
         Utilidade.atalho(botaoConfirmar, "ENTER");
         Utilidade.atalho(botaoCancelar, "ESCAPE");
         
+        Utilidade.validarInteiro(jTextField1);
+        Utilidade.validarNumerico(jTextField2);
+
         this.operacao = operacao;
     }
 

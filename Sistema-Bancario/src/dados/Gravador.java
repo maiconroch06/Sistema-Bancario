@@ -15,7 +15,7 @@ public class Gravador {
     private File pasta;
     private File arquivo;
     
-    HashMap<String, ContaBancaria> linhas;
+    private HashMap<String, ContaBancaria> linhas;
 
     public Gravador(HashMap<String, ContaBancaria> contas) {
         pasta = new File(System.getProperty("user.dir"), "src\\dados");

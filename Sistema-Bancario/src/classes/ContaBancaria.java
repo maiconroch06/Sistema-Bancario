@@ -1,11 +1,11 @@
 package classes;
 
 public abstract class ContaBancaria {
-    protected String numero;
-    protected String nome;
-    protected double saldo = 0;
-    protected String tipoConta;
-    protected double acrescimoInformacao = 0;
+    private String numero;
+    private String nome;
+    private double saldo = 0;
+    private String tipoConta;
+    private double acrescimoInformacao = 0;
 
     public ContaBancaria(String numero, String nome, double saldo, String tipoConta, double acrescimoInformacao) {
         this.numero = numero;
