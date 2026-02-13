@@ -96,5 +96,32 @@ public class Utilidade {
         tabela.setRowSorter(sorter);
         sorter.toggleSortOrder(0);
     }
+
+    public static void validarNumerico(javax.swing.JTextField txt) {
+        txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!Character.isDigit(c) && c != '.' && c != ',') {
+                    e.consume();
+                }
+                if ((c == '.' || c == ',') && (txt.getText().contains(".") || txt.getText().contains(","))) {
+                    e.consume();
+                }
+            }
+        });
+    }
+
+    public static void validarInteiro(javax.swing.JTextField txt) {
+        txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!Character.isDigit(c)) {
+                    e.consume();
+                }
+            }
+        });
+    }
     
 }

@@ -17,6 +17,10 @@ public class Transferencia extends javax.swing.JDialog {
         Utilidade.atalho(botaoConfirmar, "ENTER");
         Utilidade.atalho(botaoCancelar, "ESCAPE");
         
+        Utilidade.validarInteiro(jTextField1);
+        Utilidade.validarInteiro(jTextField2);
+        Utilidade.validarNumerico(jTextField3);
+
         this.operacao = operacao;
     }
 

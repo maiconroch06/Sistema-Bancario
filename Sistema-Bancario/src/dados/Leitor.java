@@ -12,10 +12,10 @@ import java.util.logging.Logger;
 
 public class Leitor {
 
-    File pasta;
-    File arquivo;
+    private File pasta;
+    private File arquivo;
     
-    HashMap<String, ContaBancaria> linhas;
+    private HashMap<String, ContaBancaria> linhas;
 
     public Leitor(HashMap<String, ContaBancaria> contas) {
         pasta = new File(System.getProperty("user.dir"), "src\\dados");
