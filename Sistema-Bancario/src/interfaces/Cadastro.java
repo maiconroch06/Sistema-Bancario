@@ -1,10 +1,11 @@
 package interfaces;
 
-import Service.OperacoesBancarias;
+import service.OperacoesBancarias;
 import classes.ContaBancaria;
 import classes.ContaCorrente;
 import classes.ContaPoupanca;
 import javax.swing.JOptionPane;
+import utils.Utilidade;
 
 public class Cadastro extends javax.swing.JDialog {
 
@@ -14,6 +15,11 @@ public class Cadastro extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        
+        Utilidade.atalho(jRadioButton1, "F1");
+        Utilidade.atalho(jRadioButton2, "F2");
+        Utilidade.atalho(botaoCadastro, "ENTER");
+        Utilidade.atalho(botaoCancelar, "ESCAPE");
         
         this.operacao = operacao;
     }
@@ -25,7 +31,7 @@ public class Cadastro extends javax.swing.JDialog {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         botaoCadastro = new javax.swing.JButton();
-        botalCancelar = new javax.swing.JButton();
+        botaoCancelar = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
@@ -45,11 +51,11 @@ public class Cadastro extends javax.swing.JDialog {
             }
         });
 
-        botalCancelar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        botalCancelar.setText("Cancelar");
-        botalCancelar.addActionListener(new java.awt.event.ActionListener() {
+        botaoCancelar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        botaoCancelar.setText("Cancelar");
+        botaoCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botalCancelarActionPerformed(evt);
+                botaoCancelarActionPerformed(evt);
             }
         });
 
@@ -87,7 +93,7 @@ public class Cadastro extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botaoCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botalCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68))
         );
         layout.setVerticalGroup(
@@ -106,7 +112,7 @@ public class Cadastro extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botalCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botaoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -146,13 +152,13 @@ public class Cadastro extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_botaoCadastroActionPerformed
 
-    private void botalCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botalCancelarActionPerformed
+    private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
         this.dispose();
-    }//GEN-LAST:event_botalCancelarActionPerformed
+    }//GEN-LAST:event_botaoCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botalCancelar;
     private javax.swing.JButton botaoCadastro;
+    private javax.swing.JButton botaoCancelar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;

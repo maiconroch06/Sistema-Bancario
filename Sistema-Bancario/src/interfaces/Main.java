@@ -1,24 +1,20 @@
 package interfaces;
 
-import Service.OperacoesBancarias;
 import classes.ContaBancaria;
 import classes.ContaCorrente;
-import java.util.HashMap;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+import service.OperacoesBancarias;
+import utils.Utilidade;
 
 public class Main extends javax.swing.JFrame {
     
     OperacoesBancarias operacao = new OperacoesBancarias();
-    
+
     public Main() {
         initComponents();
-        // Não mostra valor total de Corrente e nem valor da poupança
-        setLocationRelativeTo(null);
-        carregarTabela(tabelaContasBancarias, operacao.listar());
+        carregarUtilidades();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -397,7 +393,7 @@ public class Main extends javax.swing.JFrame {
         Cadastro telaCadastro = new Cadastro(this, true, operacao);
         telaCadastro.setVisible(true);
         
-        carregarTabela(tabelaContasBancarias, operacao.listar());
+        Utilidade.carregarTabela(tabelaContasBancarias, operacao.listar());
     }//GEN-LAST:event_botaoCadastroActionPerformed
 
     private void botaoSacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSacarActionPerformed
@@ -405,7 +401,7 @@ public class Main extends javax.swing.JFrame {
         telaSacar.setVisible(true);
         
         limparCampos();
-        carregarTabela(tabelaContasBancarias, operacao.listar());
+        Utilidade.carregarTabela(tabelaContasBancarias, operacao.listar());
     }//GEN-LAST:event_botaoSacarActionPerformed
 
     private void botaoDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDepositarActionPerformed
@@ -413,7 +409,7 @@ public class Main extends javax.swing.JFrame {
         telaDepositar.setVisible(true);
         
         limparCampos();
-        carregarTabela(tabelaContasBancarias, operacao.listar());
+        Utilidade.carregarTabela(tabelaContasBancarias, operacao.listar());
     }//GEN-LAST:event_botaoDepositarActionPerformed
 
     private void botaoTransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTransferirActionPerformed
@@ -421,23 +417,29 @@ public class Main extends javax.swing.JFrame {
         telaTransferir.setVisible(true);
         
         limparCampos();
-        carregarTabela(tabelaContasBancarias, operacao.listar());
+        Utilidade.carregarTabela(tabelaContasBancarias, operacao.listar());
     }//GEN-LAST:event_botaoTransferirActionPerformed
 
     private void botaoRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRemoverActionPerformed
         String numero = jTextField1.getText();
-
-        JOptionPane.showConfirmDialog(
+        if (numero.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Informe um número de uma conta!");
+            return;
+        }
+        int escolha = JOptionPane.showConfirmDialog(
                 this,
                 "Deseja realmente remover a conta " + numero + "?",
-                "Confirmação",
-                JOptionPane.YES_NO_CANCEL_OPTION
+                "Deletar conta:",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE
         );
         
-        if(operacao.remover(numero)) {
+        if(escolha == JOptionPane.YES_OPTION && operacao.remover(numero)) {
             limparCampos();
             JOptionPane.showMessageDialog(null, "Conta deletada com sucesso!");
+            Utilidade.carregarTabela(tabelaContasBancarias, operacao.listar());
         }
+        
     }//GEN-LAST:event_botaoRemoverActionPerformed
 
     private void botaoConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmarActionPerformed
@@ -504,21 +506,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTable tabelaContasBancarias;
     // End of variables declaration//GEN-END:variables
 
-    public void carregarTabela(JTable tabelaContasBancarias, HashMap<String, ContaBancaria> contas) {
-        DefaultTableModel modeloTabela = (DefaultTableModel) tabelaContasBancarias.getModel();
-        
-        modeloTabela.setNumRows(0);
-        for(ContaBancaria campo : contas.values()) {
-            modeloTabela.addRow(new Object[]{
-                campo.getNumero(),
-                campo.getNome(),
-                campo.getSaldo(),
-                campo.getTipoConta(),
-                campo.getInformacao()
-            });
-        }
-    }
-    
     private void limparCampos() {
         jTextField1.setText("");
         jTextField2.setText("");
@@ -526,6 +513,23 @@ public class Main extends javax.swing.JFrame {
         jTextField4.setText("");
         jTextField5.setText("");
         jLabel8.setText("######");
+    }
+    
+    private void carregarUtilidades() {
+        
+        setLocationRelativeTo(null);
+        Utilidade.carregarTabela(tabelaContasBancarias, operacao.listar());
+        
+        Utilidade.atalhoTelaCheia(this, "F11");
+        Utilidade.atalhoSair(this, "ESCAPE");
+        
+        Utilidade.focar(jTextField1);
+        Utilidade.atalho(botaoRemover, "F12");
+        Utilidade.atalho(botaoConfirmar, "ENTER");
+        Utilidade.atalho(botaoCadastro, "F1");
+        Utilidade.atalho(botaoDepositar, "F2");
+        Utilidade.atalho(botaoSacar, "F3");
+        Utilidade.atalho(botaoTransferir, "F4");
     }
 
 }

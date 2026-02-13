@@ -1,8 +1,9 @@
 package interfaces;
 
-import Service.OperacoesBancarias;
+import service.OperacoesBancarias;
 import classes.ContaBancaria;
 import javax.swing.JOptionPane;
+import utils.Utilidade;
 
 public class Transferencia extends javax.swing.JDialog {
 
@@ -13,6 +14,9 @@ public class Transferencia extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
 
+        Utilidade.atalho(botaoConfirmar, "ENTER");
+        Utilidade.atalho(botaoCancelar, "ESCAPE");
+        
         this.operacao = operacao;
     }
 

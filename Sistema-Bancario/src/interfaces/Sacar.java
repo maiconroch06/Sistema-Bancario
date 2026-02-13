@@ -1,10 +1,11 @@
 package interfaces;
 
-import Service.OperacoesBancarias;
+import service.OperacoesBancarias;
 import classes.ContaBancaria;
 import classes.ContaCorrente;
 import classes.ContaPoupanca;
 import javax.swing.JOptionPane;
+import utils.Utilidade;
 
 public class Sacar extends javax.swing.JDialog {
 
@@ -14,6 +15,9 @@ public class Sacar extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        
+        Utilidade.atalho(botaoConfirmar, "ENTER");
+        Utilidade.atalho(botaoCancelar, "ESCAPE");
         
         this.operacao = operacao;
     }
@@ -231,6 +235,8 @@ public class Sacar extends javax.swing.JDialog {
             jRadioButton1.setSelected(false);
             jRadioButton2.setEnabled(true);
             jRadioButton2.setSelected(false);
+            Utilidade.atalho(jRadioButton1, "F1");
+            Utilidade.atalho(jRadioButton2, "F2");
             jLabel5.setText(conta.getTipoConta() + "  |  R$" + conta.getInformacao());
             
         }
