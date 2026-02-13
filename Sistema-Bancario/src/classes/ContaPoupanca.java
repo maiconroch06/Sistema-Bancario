@@ -24,7 +24,7 @@ public class ContaPoupanca extends ContaBancaria {
     
     @Override
     public double mostrarSaldo() {
-        return getSaldo();
+        return getSaldo() + getInformacao();
     }
     
     @Override
