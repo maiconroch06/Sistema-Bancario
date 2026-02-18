@@ -7,6 +7,14 @@ Este projeto é um sistema bancário desenvolvido como parte da disciplina de **
 - **Manipulação de Arquivos:** Persistência de dados das contas em arquivos de texto (`.txt`), garantindo que as informações sejam mantidas entre execuções do programa.
 - **Interface Gráfica (GUI):** Desenvolvimento de uma interface amigável utilizando Java Swing para interagir com o sistema.
 
+## Demostração (imagem clicavel)
+<div align="center">
+
+  [![Assista ao vídeo](https://img.youtube.com/vi/_NXXNoYNPsU/0.jpg)](https://www.youtube.com/watch?v=_NXXNoYNPsU)
+  
+</div>
+  Sistema Bancário - Projeto Acadêmico feito em java
+
 ## Estrutura do Projeto (`src/`)
 
 Abaixo estão as principais pastas e suas responsabilidades:
