@@ -34,3 +34,7 @@ Abaixo estão as principais pastas e suas responsabilidades:
 - **`utils/`**: Métodos auxiliares.
   - `Utilidade.java`: Contém funções para carregar tabelas, configurar atalhos, ícones e validações de entrada.
 - **`imagens/`**: Recursos visuais utilizados na interface (fundo, ícones).
+
+## Autores
+
+Este projeto teve a contribuição de Danilo Correia, [Laelson](https://github.com/thlaelwt) e [Maicon Rocha](https://github.com/maiconroch06)
